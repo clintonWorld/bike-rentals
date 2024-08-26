@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import ListingCard from "../common/ListingCard";
 import Navbar from "../common/Navbar";
-import Footer from "../common/Footer";
 import { bikes } from "../../dummyData";
 import RevealOnScroll from "../animation/RevealOnScroll";
 import Filter from "../common/Filter";
 import { FilterContext } from "../FilterContext/FilterContext";
 import BikesNotFound from "../common/BikesNotFound";
+import Footer from "../common/Footer";
 
 const Listings = (props) => {
-  const { price, location , dispatch } = useContext(FilterContext);
+  const { price, location, dispatch } = useContext(FilterContext);
   const [newArray, setNewArray] = useState([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Listings = (props) => {
     });
 
     setNewArray(newArray);
-    dispatch({type:"ADD_ARRAY" , payload:newArray})
+    dispatch({ type: "ADD_ARRAY", payload: newArray });
   }, [price, location]);
 
   const changeTheLocation = (id) => {
@@ -57,7 +57,6 @@ const Listings = (props) => {
             return (
               <ListingCard
                 onClick={changeTheLocation}
-                className="my-3"
                 key={index}
                 image={val.imageUrl}
                 title={val.title}

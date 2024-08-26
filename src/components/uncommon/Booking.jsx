@@ -24,6 +24,11 @@ const Booking = (props) => {
       };
     });
   };
+
+  const showAlert  = (e)=>{
+    e.preventDefault() ;
+    alert("This optin will be available soon! : ) ")
+  }
   return (
     <div className="lg:h-screen md:h-screen h-auto p-5 bg-slate-100 lg:flex lg:items-center lg:justify-center md:flex md:items-center md:justify-center">
       <div className="bg-white h-auto rounded-md p-4 lg:w-1/2 md:w-auto">
@@ -36,7 +41,7 @@ const Booking = (props) => {
             src="https://i.pinimg.com/736x/fd/45/d4/fd45d48875aad7e556f8fb23b19d9eed.jpg"
             alt="heor section"
           />
-          <form autoComplete="off">
+          <form autoComplete="off" onSubmit={showAlert}>
             <label htmlFor="name" className="text-xl mt-4">
               Full Name
             </label>

@@ -6,6 +6,7 @@ import {owner} from "../../dummyOwner"
 
 const Owner = (props) => {
 
+  console.log(owner)
 
   return (
     <div>

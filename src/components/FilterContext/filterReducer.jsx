@@ -20,6 +20,13 @@ export const filterReducer = (state, action) => {
         all: payload,
       };
 
+      case "UPDATE_SEARCH_TEXT":
+        console.log(payload)
+      return {
+        ...state,
+        search: payload,
+      };
+
     case "SHOW_SIGN_UP":
       return {
         ...state ,

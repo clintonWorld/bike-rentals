@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
-import Button from "../common/Button";
 import { FilterContext } from "../FilterContext/FilterContext";
 import SignInButton from "../common/SignInButton";
 
 const SignUp = (props) => {
   const { dispatch } = useContext(FilterContext);
+
+  const showAlert = (e) =>{
+    e.preventDefault(); 
+    alert("This option will be available soon ! : ) ")
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all ease-out ">
@@ -15,7 +19,7 @@ const SignUp = (props) => {
             className="fa-solid fa-x absolute top-5 right-10 bolder text-red-500 cursor-pointer  text-2xl "
           ></i>
           <h2 className="text-2xl font-bold mb-4 text-center">Sign Up </h2>
-          <form autoComplete="off" autoFocus>
+          <form autoComplete="off" autoFocus onSubmit={showAlert}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -87,9 +91,9 @@ const SignUp = (props) => {
               </label>
             </div>
 
-           <SignInButton innerText={"Sign up with Google"} icons = {"google"}/>
-           <SignInButton innerText={"Sign up with Facebook"} icons = {"facebook"}/>
-           <SignInButton innerText={"Create an Account"} color = {"red-500"} font = {"white"} hover={"red-300"}/>
+           <SignInButton innerText={"Sign up with Google"} icons = {"google"} onClick={showAlert}/>
+           <SignInButton innerText={"Sign up with Facebook"} icons = {"facebook"} onClick={showAlert}/>
+           <SignInButton innerText={"Create an Account"} color = {"red-500"} font = {"white"} hover={"red-300"} onClick={showAlert}/>
 
            
           </form>

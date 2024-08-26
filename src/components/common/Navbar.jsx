@@ -1,45 +1,39 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import "./Button";
 import Button from "./Button";
 import { NavLink } from "react-router-dom";
 import { FilterContext } from "../FilterContext/FilterContext";
 
 const Navbar = () => {
-  const [showInput, setShowInput] = useState(false);
-  const [stickNav, setStickyNav] = useState(false);
-  const [scroll, setScroll] = useState(0);
+
   const { dispatch } = useContext(FilterContext);
   const [ham, setHam] = useState(false);
-
-  const user = true;
-  const accountType = true;
+  const [searchText, setSearchText] = useState("");
+  const searchBarRef = useRef(null);
 
   window.addEventListener("scroll", (e) => {
     setScroll(window.scrollY);
   });
 
-  useEffect(
-    (e) => {
-      const changeInput = () => {
-        if (scroll > 180) {
-          setStickyNav(true);
-        } else {
-          setStickyNav(false);
-        }
-      };
-      changeInput();
-    },
-    [scroll]
-  );
-
+  
   const MakePopUpSignUp = (e) => {
     dispatch({ type: "SHOW_SIGN_UP" });
   };
 
-  const sNav =
-    "bg-slate-100 p-4 shadow-xl font-serif sticky top-0 font-2xl transition-transform duration-300 ease-in-out";
-  const hNav =
-    "bg-slate-100 p-4 shadow-xl font-serif font-2xl transition-duration-300 ease-in-out";
+  const searchHandler = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchText === "") {
+      alert("Please enter search value.");
+    } else {
+      dispatch({
+        type: "UPDATE_SEARCH_TEXT",
+        payload: searchText,
+      });
+    }
+  };
 
   return (
     <nav
@@ -86,60 +80,6 @@ const Navbar = () => {
             >
               Listings
             </NavLink>
-
-            {user && (
-              <NavLink
-                to="/listings"
-                className="text-black hover:border-b-2 border-red-500 sm:border-b-0 text-xl"
-              >
-                Messages
-              </NavLink>
-            )}
-
-            {user && (
-              <NavLink
-                to="/listings"
-                className="text-black hover:border-b-2 border-red-500 sm:border-b-0 text-xl"
-              >
-                Saved Bikes
-              </NavLink>
-            )}
-
-            {user && accountType && (
-              <NavLink
-                to="/listings"
-                className="text-black hover:border-b-2 border-red-500 sm:border-b-0 text-xl"
-              >
-                Requests
-              </NavLink>
-            )}
-
-            {user && accountType && (
-              <NavLink
-                to="/listings"
-                className="text-black hover:border-b-2 border-red-500 sm:border-b-0 text-xl"
-              >
-                New post
-              </NavLink>
-            )}
-
-            {user && (
-              <NavLink
-                to="/listings"
-                className="text-black hover:border-b-2 border-red-500 sm:border-b-0 text-xl"
-              >
-                Sent Requests
-              </NavLink>
-            )}
-
-            {user && accountType && (
-              <NavLink
-                to="/listings"
-                className="text-black hover:border-b-2 border-red-500 sm:border-b-0 text-xl"
-              >
-                Your Posts
-              </NavLink>
-            )}
           </div>
 
           <div>
@@ -165,33 +105,27 @@ const Navbar = () => {
               ham ? "flex " : "hidden"
             } lg:flex flex-col sm:flex-row items-center sm:justify-end sm:items-center sm:space-x-4`}
           >
-            {showInput ? null : (
-              <div className="flex flex-col sm:flex-row sm:space-x-2">
-                <NavLink
-                  href="#login"
-                  className="text-black sm:border-b-0 text-xl my-2"
-                >
-                  <Button text={"Log in"} />
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center justify-center rounded-md outline-2 border-slate-500 bg-slate-50 p-3">
+                <input
+                  type="text"
+                  placeholder="Try searching Duke"
+                  className="px-3 py-1  border-none focus:outline-none text-lg w-full bg-transparent"
+                  onChange={searchHandler}
+                  ref={searchBarRef}
+                />
+                <NavLink to={searchText != "" ? `/search/ ${searchText}` : "/"}>
+                  <i
+                    onClick={handleSearch}
+                    className="fa-solid fa-magnifying-glass text-2xl font-bold cursor-pointer text-slate-300"
+                  ></i>
                 </NavLink>
               </div>
-            )}
-
-            <div className="flex items-center space-x-2">
-              {showInput ? (
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Search for bikes..."
-                    className="px-3 py-1 rounded-l-sm border-none focus:outline-none text-sm w-full"
-                  />
-                </div>
-              ) : null}
-              <div>
-                <Button
-                  text={"Search"}
-                  onClick={() => setShowInput(!showInput)}
-                />
-              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:space-x-2">
+              <NavLink>
+                <Button text={"Sign up"} onClick={MakePopUpSignUp} />
+              </NavLink>
             </div>
           </div>
         </div>

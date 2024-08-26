@@ -180,7 +180,7 @@ const Filter = () => {
       <div className="flex-1 ml-1/4 lg:ml-1/3 p-4">
         {isMobile && (
           <button
-            className="fixed top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded z-30"
+            className="fixed top-20 left-4 bg-red-500 text-white px-4 py-2 rounded z-30"
             onClick={() => setShowFilters(!showFilters)}
           >
             <i className="fa-solid fa-sliders"></i>

@@ -7,40 +7,31 @@ import RevealOnScroll from "../animation/RevealOnScroll";
 import Footer from "../common/Footer";
 import "../../app.css";
 
-
 const Home = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  
   return (
     <div>
       <Navbar />
-  
       <RevealOnScroll>
         <Hero />
       </RevealOnScroll>
-
       <RevealOnScroll>
         <div>
           <Earn
             title="Earn With Us"
-            description=" Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. "
+            description="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil unde ea, cumque fugit ad quisquam neque facere rerum necessitatibus nostrum, dolores nesciunt non, obcaecati sed ratione ipsam nemo ut magnam?
+      Voluptatem voluptatum fuga sint perspiciatis corporis nihil harum tempora deleniti sed porro! Odit nemo recusandae expedita, est praesentium commodi. Nam ex esse laboriosam dolorem nisi laudantium nemo necessitatibus cumque voluptatibus!
+      Voluptatibus, eveniet sit quas dolorem quidem itaque repellendus, officiis nemo tempore modi fugiat velit nihil voluptas inventore vel quos dicta? Accusamus ab consectetur velit adipisci labore blanditiis optio accusantium quaerat  "
             image="cardRenter.jpg"
           />
         </div>
       </RevealOnScroll>
-
       <RevealOnScroll>
         <Maps />
       </RevealOnScroll>
-
       <RevealOnScroll>
         <Earn
           title="Rent a bike"
@@ -48,7 +39,7 @@ const Home = (props) => {
           image="motorbike.avif"
         />
       </RevealOnScroll>
-      <Footer />
+      <Footer />.
     </div>
   );
 };

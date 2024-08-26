@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   all: "",
   showModal: false,
   updatedArray: [],
+  search:"" ,
 };
 
 // Create the context with the initial state
@@ -25,6 +26,7 @@ export const FilterContextProvider = ({ children }) => {
         all: state.all,
         dispatch,
         modal: state.showModal,
+        search: state.search,
         updatedArray:state.updatedArray
       }}
     >
